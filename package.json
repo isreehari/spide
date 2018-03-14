@@ -1,13 +1,16 @@
- {
-  "name": "API",
+{
+  "name": "spide",
   "version": "1.0.0",
   "main": "app.js",
   "dependencies": {
+    "body-parser": "*",
+    "bootstrap": "^4.0.0",
+    "exports": "*",
     "express": "4.*",
-    "body-parser" : "*",
-    "express-brute":"*",
-    "exports": "*"
+    "express-brute": "*",
+    "jquery": "^1.9.1",
+    "popper.js": "^1.14.1"
   },
-  "author": "Osman Ali",
+  "author": "isreehari",
   "license": "MIT"
 }

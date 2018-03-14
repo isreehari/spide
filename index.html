@@ -1,128 +1,114 @@
-<html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="SPIDE">
+    <meta name="author" content="isreehari">
+    <link rel="icon" href="./favicon.ico">
 
-<head>
-    <script src="langs.js"></script><!-- installing script creating codes and creating templates for intial page  -->
-</head>
+    <title>SPIDE</title>
 
-<style type="text/css">
-label {
-    width:200px;
-    display: inline-block;
-    float: left;
-}
-input, textarea {
-    display: inline-block;
-}
-.output{
-	font-family: monospace;
-	white-space: pre-line;
-	border:1px solid #ccc;
-	background: #eee;
-	min-height: 50px;
-}
+    <!-- Bootstrap core CSS -->
+    <link href="./assets/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/node_modules/codemirror/lib/codemirror.css"
+    <!-- Custom styles for this template -->
+    <link href="./assets/css/customstyles.css" rel="stylesheet">
+  </head>
 
-h3{
-	margin-top: 0;
-	padding: 0;
-}
-</style>
+  <body>
 
-<body>
-	<p>
-		This is an example client to demo the sandboxed compiling.
-	</p>
-	<h3>Code Compile</h3>
-<!-- getiing the id of the language -->
-    <label>Language ID <a href="#" id="langhelp">(list)</a>:</label>
-    <input type='text' id="langid" value=0>
-    <br>
-    <label>Code:</label>
-    <textarea id="code">print 'Hello!'</textarea>
-    <br>
-    <br>
-<!-- creating box for stdin -->
-    <label>STDIN:</label>
-    <textarea id="stdin">
-        hello
-    </textarea>
     
 
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+          <a class="navbar-brand col-sm-1 col-md-1 mr-0" href="#">Company name</a>          
+          <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+              <a class="nav-link" href="#">Sign In</a>
+            </li>
+          </ul>
+        </nav>
+    </header>
 
-    <input type="button" value="Compile" id="send">
-<!-- output box -->
-    <p class="output" id="output">Output appears here</p>
-    <hr>
-    <h3>Tests</h3>
-    <input type="button" value="Test All Languages" id="testAll">
+    <!-- Begin page content -->
 
-
-    <p id="testsoutput" class="output">Output of all tests appear here<br><br>
-    </p>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-    <script type="text/javascript">
-
-    //SHOW LANGUAGE CODES TO USER ON CLICKING HELP LINK
-    $('#langhelp').on('click',function () {
-    	var msg = "These are the languages and their langids: \n[LANGID]: [LANGUAGE]\n";
-    	var langs = [];
-    	for (var i in LANGS)
-    	{
-    		msg += LANGS[i][0] + ": " + i +"\n";	
-    	}
-
-    	alert(msg);
-    });
-
-
-    //COMPILE USER GIVEN CODE
-    $('#send').on('click', function() {
-        var langid = $('#langid').val();
-        var codeF = $('#code').val();
-        var stdin = $('#stdin').val();
-// passing the json file to the page 
-        var json = {
-            language: langid,
-            code: codeF,
-            stdin:stdin
-        };
-        console.log(json);
-
-        $.post("/compile", json, function(data, error, xhr) {
-
-            document.getElementById("output").innerHTML = data.output;
-        });
-    });
+    <div class="container-fluid">
+        <div class="row">
+          <nav class="col-md-1 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">
+                    <span data-feather="home"></span>
+                    Dashboard <span class="sr-only">(current)</span>
+                  </a>
+                </li>                
+              </ul>
+            </div>
+          </nav>
+  
+          <main role="main" class="col-md-11 ml-sm-auto col-lg-11 pt-3 px-4">
+              <div class="row">
+                  <div class="col-6">
+                      <div class="code-editor"> 
 
 
-    //RUN TESTS ON ALL LANGUAGES
-    var langid_to_name = [];
+                        
+                      </div>
+                  </div> <!-- code editor -->
+                  <div class="col-6"> 
+                      <div class="code-teriminal"> 
+                           <!-- getiing the id of the language -->
+                          <label>Language ID <a href="#" id="langhelp">(list)</a>:</label>
+                          <input type='text' id="langid" value=0>
+                          <br>
+                          <label>Code:</label>
+                          <textarea id="code">print 'Hello!'</textarea>
+                          <br>
+                          <br>
+                      <!-- creating box for stdin -->
+                          <label>STDIN:</label>
+                          <textarea id="stdin">
+                              hello
+                          </textarea>
+                          
 
-    $('#testAll').on('click', function() {
-    	//send compile request for each language
-        for (var i in LANGS) {
-            var langid = LANGS[i][0];
-            var codeF = Codes[i];
-            langid_to_name[langid] = i;
+                          <input type="button" value="Compile" id="send">
+                      <!-- output box -->
+                          <p class="output" id="output">Output appears here</p>
+                          <hr>
+                          <h3>Tests</h3>
+                          <input type="button" value="Test All Languages" id="testAll">
 
-            //prepare data
-            var json = {
-                language: langid,
-                code: codeF
-            };
 
-            //send post and print result
-            $.post("/compile", json, function(data, error, xhr) {
+                          <p id="testsoutput" class="output">Output of all tests appear here<br><br>
+                          </p>
 
-                $("#testsoutput").append("<b>"+langid_to_name[data.langid] + "</b>: " +
-                    data.output + "<br><br>");
-            });
 
-        }
-    });
-    </script>
+                      </div>
+                  </div> <!-- teriminal -->
+              </div>
+          </main>
+        </div>
+      </div>
 
-</body>
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">Place sticky footer content here.</span>
+      </div>
+    </footer>
 
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./assets/node_modules/jquery/jquery.min.js" ></script>  
+    <script src="./assets/node_modules/jquery-slim/dist/jquery.slim.min.js" ></script>    
+    <script src="./assets/node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="./assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./assets/node_modules/codemirror/lib/codemirror.js"></script>
+    <script src="./assets/js/langs.js"></script>
+    <script src="./assets/js/customjs.js"></script>
+  </body>
 </html>

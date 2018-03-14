@@ -1,0 +1,27 @@
+{
+  "name": "spide",
+  "version": "0.0.1",
+  "description": "SP IDE",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/isreehari/spide"
+  },
+  "keywords": [
+    "SP",
+    "IDE",
+    "IDE"
+  ],
+  "author": "isreehari",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "codemirror": "^5.35.0",
+    "jquery": "^1.9.1",
+    "jquery-slim": "^3.0.0",
+    "popper.js": "^1.14.1"
+  }
+}

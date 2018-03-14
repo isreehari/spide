@@ -137,7 +137,10 @@ DockerSandbox.prototype.execute = function(success)
     console.log(st);
 
     //execute the Docker, This is done ASYNCHRONOUSLY
-    exec(st);
+    //exec(st);
+     exec(st, function(error, stdout, stderr){
+         console.log(error,stdout,stderr);
+     });
     console.log("------------------------------")
     //Check For File named "completed" after every 1 second
     var intid = setInterval(function() 
@@ -169,15 +172,15 @@ DockerSandbox.prototype.execute = function(success)
                		console.log("Main File")
                		console.log(data)
 
-			var lines = data.toString().split('*-COMPILEBOX::ENDOFOUTPUT-*')
-			data=lines[0]
-			var time=lines[1]
+                    var lines = data.toString().split('*-COMPILEBOX::ENDOFOUTPUT-*')
+                    data=lines[0]
+                    var time=lines[1]
 
-			console.log("Time: ")
-			console.log(time)
+                    console.log("Time: ")
+                    console.log(time)
 
 
-       	           	success(data,time,data2)
+                    success(data,time,data2)
                 });
 
                 //return the data to the calling functoin
