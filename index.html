@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-ng-app="spide">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,7 +16,7 @@
     <link href="./assets/css/customstyles.css" rel="stylesheet">
   </head>
 
-  <body>
+  <body data-ng-controller="MainController as mainCtr">
 
     
 
@@ -52,8 +52,9 @@
           <main role="main" class="col-md-11 ml-sm-auto col-lg-11 pt-3 px-4">
               <div class="row">
                   <div class="col-6">
-                      <div class="code-editor"> 
+                      <div class="code-editor" data-ui-ace="aceOption" data-ng-model="aceModel"> 
 
+                          Ace here
 
                         
                       </div>
@@ -107,8 +108,16 @@
     <script src="./assets/node_modules/jquery-slim/dist/jquery.slim.min.js" ></script>    
     <script src="./assets/node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="./assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./assets/node_modules/codemirror/lib/codemirror.js"></script>
+    <script src="./assets/node_modules/ace-builds/src-min-noconflict/ace.js"></script>
+    <script src="./assets/node_modules/angular/angular.min.js"></script>
+    <script src="./assets/node_modules/angular-ui-ace/src/ui-ace.js"></script>
     <script src="./assets/js/langs.js"></script>
     <script src="./assets/js/customjs.js"></script>
+
+    <script src="./assets/js/spide/app.js"></script>
+    <script src="./assets/js/spide/directives.js"></script>
+    <script src="./assets/js/spide/services.js"></script>
+    <script src="./assets/js/spide/controllers.js"></script>
+
   </body>
 </html>
