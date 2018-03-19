@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="SPIDE">
     <meta name="author" content="isreehari">
-    <link rel="icon" href="./favicon.ico">
+    <link rel="icon" href="/favicon.ico">
 
     <title>SPIDE</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./assets/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="./assets/node_modules/codemirror/lib/codemirror.css"
+    <link href="./assets/node_modules/chosen-js/chosen.min.css" rel="stylesheet">    
+    <link href="./assets/node_modules/codemirror/lib/codemirror.css" rel="styleshee">
     <!-- Custom styles for this template -->
     <link href="./assets/css/customstyles.css" rel="stylesheet">
   </head>
@@ -19,18 +20,18 @@
   <body data-ng-controller="MainController as mainCtr">
 
     
-
-    <header>
-      <!-- Fixed navbar -->
+    <!-- Fixed navbar -->
+    <!-- <header>
+    
       <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-          <a class="navbar-brand col-sm-1 col-md-1 mr-0" href="#">Company name</a>          
+          <a class="navbar-brand col-sm-1 col-md-1 mr-0" href="#">SPIDE</a>          
           <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
               <a class="nav-link" href="#">Sign In</a>
             </li>
           </ul>
         </nav>
-    </header>
+    </header> -->
 
     <!-- Begin page content -->
 
@@ -48,19 +49,29 @@
               </ul>
             </div>
           </nav>
-  
-          <main role="main" class="col-md-11 ml-sm-auto col-lg-11 pt-3 px-4">
-              <div class="row">
-                  <div class="col-6">
-                      <div class="code-editor" data-ui-ace="aceOption" data-ng-model="aceModel"> 
-
-                          Ace here
-
-                        
+          <main role="main" class="col-md-11 ml-sm-auto col-lg-11 spcode-main"> <!-- pt-3 px-4 -->
+              <div class="row spcode-container">
+                  <div class="col-6 spcode-editor">
+                      <div class="spcode-editor" data-ui-ace="mainCtr.aceOption" data-ng-model="mainCtr.spCodeEditor.code">  Ace here </div>
+                      <div class="spcode-editor-footer"> 
+                          <div class="row">
+                              <div class="col-md-2 chosen-container speditor-lang"> 
+                                 <select 
+                                 chosen
+                                 data-placeholder-text-single="'Pick one of lang'"                                                                  
+                                 data-ng-options="lang.lang for lang in mainCtr.listLanguages"
+                                 data-ng-model="mainCtr.spCodeEditor.lang"
+                                 data-ng-change="mainCtr.langChanged()"
+                                 name="spcodeEditorLang">
+                                 <option value=""></option>
+                                </select>
+                              </div>
+                              <div class="col-md-10"></div>
+                          </div>
                       </div>
                   </div> <!-- code editor -->
-                  <div class="col-6"> 
-                      <div class="code-teriminal"> 
+                  <div class="col-6 spcode-teriminal"> 
+                      <div class="spcode-teriminal"> 
                            <!-- getiing the id of the language -->
                           <label>Language ID <a href="#" id="langhelp">(list)</a>:</label>
                           <input type='text' id="langid" value=0>
@@ -89,18 +100,19 @@
 
 
                       </div>
+
+
+                      <div class="spcode-editor-footer"> 
+                          <div class="row">
+                              <div class="col-md-12">Code editor footer 2</div>
+                          </div>                         
+                      </div>
+
                   </div> <!-- teriminal -->
               </div>
           </main>
         </div>
       </div>
-
-    <footer class="footer">
-      <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
-      </div>
-    </footer>
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -110,14 +122,17 @@
     <script src="./assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./assets/node_modules/ace-builds/src-min-noconflict/ace.js"></script>
     <script src="./assets/node_modules/angular/angular.min.js"></script>
+    <script src="./assets/node_modules/chosen-js/chosen.jquery.min.js"></script>
+    <script src="./assets/node_modules/angular-chosen-localytics/dist/angular-chosen.min.js"></script>
     <script src="./assets/node_modules/angular-ui-ace/src/ui-ace.js"></script>
     <script src="./assets/js/langs.js"></script>
-    <script src="./assets/js/customjs.js"></script>
+    
 
     <script src="./assets/js/spide/app.js"></script>
     <script src="./assets/js/spide/directives.js"></script>
     <script src="./assets/js/spide/services.js"></script>
     <script src="./assets/js/spide/controllers.js"></script>
+    <script src="./assets/js/customjs.js"></script>
 
   </body>
 </html>

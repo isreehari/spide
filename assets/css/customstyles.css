@@ -1,23 +1,15 @@
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-    position: relative;
+   
     min-height: 100%;
   }
   body {
     /* Margin bottom by footer height */
+    position: relative;
     margin-bottom: 60px;
   }
-  .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 60px;
-    line-height: 60px; /* Vertically center the text there */
-    background-color: #f5f5f5;
-  }
- 
+  
   /*
  * Sidebar
  */
@@ -35,9 +27,9 @@ html {
 .sidebar-sticky {
   position: -webkit-sticky;
   position: sticky;
-  top: 48px; /* Height of navbar */
-  height: calc(100vh - 48px);
-  padding-top: .5rem;
+  top: 0px; /* Height of navbar */
+  /* height: calc(100vh - 48px);
+  padding-top: .5rem; */
   overflow-x: hidden;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
@@ -67,6 +59,8 @@ html {
 }
 
 /* end Sidebar */
+
+
 
 /*
  * Navbar
@@ -104,16 +98,70 @@ html {
 .border-top { border-top: 1px solid #e5e5e5; }
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
 
+
+ /* main */
+ .spcode-main{
+   padding-left: 0px;
+ }
+ /* end main */
+
+
  /* Code container */
 
 
- .code-container{
+/* .spcode-container{
   margin-top: 56px;
-}
-.code-editor{
+} */
+.spcode-editor, .spcode-teriminal{
   height : 100vh;
 }
 
-
+.spcode-editor-footer{
+    position: absolute;
+    bottom: 0;
+    /* width: 100%; */
+    z-index: 99;
+    /* Set the fixed height of the footer here */
+    height: 66px;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #f5f5f5;
+}
 
 /* end Code Container */
+
+
+
+/* chosen container */
+
+
+
+.chosen-container .chosen-drop {
+  border-bottom: 0;
+  border-top: 1px solid #aaa;
+  top: auto;
+  bottom: 40px;
+}
+
+.chosen-container.chosen-with-drop .chosen-single {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  background-image: none;
+}
+
+.chosen-container.chosen-with-drop .chosen-drop {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  
+  box-shadow: none;
+  
+  margin-bottom: -16px;
+}
+
+/* end chosen container*/

@@ -6,6 +6,7 @@
 (function () {
     angular.module('spide', [        
         'ui.ace',   // ui-ace
+        'localytics.directives', //localytics.directives
     ])
 })();
 
