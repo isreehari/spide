@@ -23,6 +23,7 @@
     "angular-chosen-localytics": "^1.8.0",
     "angular-ui-ace": "^0.2.3",
     "bootstrap": "^4.0.0",
+    "bootstrap4c-chosen": "^1.0.6",
     "chosen-js": "^1.8.3",
     "codemirror": "^5.35.0",
     "jquery": "^1.9.1",

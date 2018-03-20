@@ -23,6 +23,26 @@ function myHttpInterceptor($q, $rootScope) {
 
      };
 
+function spIDEServiceDef($http){
+    var spIDEServiceObj = {};
+
+        spIDEServiceObj.runCode = function(spCodeEditor){
+            return $http({
+                url:"/compile",
+                method:"post",
+                data:spCodeEditor
+            }).then(function(returnData){
+                return returnData;
+            },function(returnData){
+                return returnData;
+            });
+        }
+
+
+    return spIDEServiceObj;
+
+}
+
 
 
 /**
@@ -31,4 +51,5 @@ function myHttpInterceptor($q, $rootScope) {
  */
 angular.module('spide')
        .factory('myHttpInterceptor',['$q', '$rootScope',myHttpInterceptor])
+       .factory('spIDEService',['$http', spIDEServiceDef])
 })(window.angular);

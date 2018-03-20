@@ -12,6 +12,7 @@
     <!-- Bootstrap core CSS -->
     <link href="./assets/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="./assets/node_modules/chosen-js/chosen.min.css" rel="stylesheet">    
+    <link href="./assets/node_modules/bootstrap4c-chosen/dist/css/component-chosen.min.css" rel="stylesheet">
     <link href="./assets/node_modules/codemirror/lib/codemirror.css" rel="styleshee">
     <!-- Custom styles for this template -->
     <link href="./assets/css/customstyles.css" rel="stylesheet">
@@ -51,63 +52,79 @@
           </nav>
           <main role="main" class="col-md-11 ml-sm-auto col-lg-11 spcode-main"> <!-- pt-3 px-4 -->
               <div class="row spcode-container">
-                  <div class="col-6 spcode-editor">
-                      <div class="spcode-editor" data-ui-ace="mainCtr.aceOption" data-ng-model="mainCtr.spCodeEditor.code">  Ace here </div>
-                      <div class="spcode-editor-footer"> 
-                          <div class="row">
-                              <div class="col-md-2 chosen-container speditor-lang"> 
-                                 <select 
-                                 chosen
-                                 data-placeholder-text-single="'Pick one of lang'"                                                                  
-                                 data-ng-options="lang.lang for lang in mainCtr.listLanguages"
-                                 data-ng-model="mainCtr.spCodeEditor.lang"
-                                 data-ng-change="mainCtr.langChanged()"
-                                 name="spcodeEditorLang">
-                                 <option value=""></option>
-                                </select>
-                              </div>
-                              <div class="col-md-10"></div>
-                          </div>
+                  <div class="col-6">
+                      <div class="spcode-editor">
+                            <div class="spcode-editor-code" data-ui-ace="mainCtr.aceOption" data-ng-model="mainCtr.spCodeEditor.code">  Ace here </div>
+                            <div class="spcode-editor-footer"> 
+                                <div class="spcode-editor-tools">
+                                  <div class="container-fluid">
+
+                                      <div class="row">
+                                          <div class="col-md-3 speditor-lang"> 
+                                                <select 
+                                                    chosen
+                                                    data-placeholder-text-single="'Pick one of lang'"                                                                  
+                                                    data-ng-options="lang.lang for lang in mainCtr.listLanguages"
+                                                    data-ng-model="mainCtr.spCodeEditor.lang"
+                                                    data-ng-change="mainCtr.langChanged()"
+                                                    name="spcodeEditorLang"
+                                                    class="speditor-control ">
+                                                    <option value=""></option>
+                                                </select>
+                                          </div>
+            
+                                          <div class="col-md-3 speditor-theme"> 
+                                              <select 
+                                                    chosen
+                                                    data-placeholder-text-single="'Pick one of theme'"                                                                  
+                                                    data-ng-options="theme.displayName for theme in mainCtr.listThemes"
+                                                    data-ng-model="mainCtr.spCodeEditor.theme"
+                                                    data-ng-change="mainCtr.themeChanged()"
+                                                    name="spcodeEditorTheme"
+                                                    class="speditor-control ">
+                                                <option value=""></option>
+                                              </select>
+                                          </div>
+
+                                          <div class="col-md-2 speditor-theme"> 
+                                            <button type="button" data-ng-click="mainCtr.runCode()">  Run </button>
+                                          </div>
+            
+                                          <div class="col-md-4"></div>
+                                      </div>
+
+                                  </div>
+                                </div> <!-- spcode-editor-tools -->
+                        </div>
                       </div>
                   </div> <!-- code editor -->
-                  <div class="col-6 spcode-teriminal"> 
+                  <div class="col-6"> 
+                      
                       <div class="spcode-teriminal"> 
-                           <!-- getiing the id of the language -->
-                          <label>Language ID <a href="#" id="langhelp">(list)</a>:</label>
-                          <input type='text' id="langid" value=0>
-                          <br>
-                          <label>Code:</label>
-                          <textarea id="code">print 'Hello!'</textarea>
-                          <br>
-                          <br>
-                      <!-- creating box for stdin -->
-                          <label>STDIN:</label>
-                          <textarea id="stdin">
-                              hello
-                          </textarea>
+
+                          <div class="spcode-stdin">
+                              <textarea name="stdin" class="form-control" placeholder="STDIN" data-ng-model="mainCtr.spCodeEditor.stdin" rows="8"></textarea>
+                          </div>
+
+
+                          <div class="spcode-stdout">
+                              <textarea name="stdout" readonly="readonly" placeholder="STDOUT" class="form-control" rows="8">
+                                {{mainCtr.spCodeEditor.stdOut.output}}
+                              </textarea>                              
+                          </div>
+
+                          <div class="spcode-editor-footer"> 
+                              <div class="spcode-editor-tools">
+                                  <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-12">Code editor footer 2</div>
+                                        </div>       
+                                  </div>
+                              </div> <!-- spcode-editor-tools -->          
+                          </div>
                           
 
-                          <input type="button" value="Compile" id="send">
-                      <!-- output box -->
-                          <p class="output" id="output">Output appears here</p>
-                          <hr>
-                          <h3>Tests</h3>
-                          <input type="button" value="Test All Languages" id="testAll">
-
-
-                          <p id="testsoutput" class="output">Output of all tests appear here<br><br>
-                          </p>
-
-
-                      </div>
-
-
-                      <div class="spcode-editor-footer"> 
-                          <div class="row">
-                              <div class="col-md-12">Code editor footer 2</div>
-                          </div>                         
-                      </div>
-
+                      </div> <!-- spcode-teriminal -->
                   </div> <!-- teriminal -->
               </div>
           </main>
